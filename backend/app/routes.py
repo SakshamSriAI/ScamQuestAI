@@ -18,11 +18,30 @@ engine = GameEngine()
 
 @router.get("/health", tags=["System"])
 def health_check():
+    from backend.app.config import DATABASE_URL
+    from backend.app.db import get_db_status, is_db_available
+    db_status = get_db_status()
+    db_ok = is_db_available()
+
+    if DATABASE_URL:
+        # Production environment: DATABASE_URL is configured
+        if db_ok:
+            status_text = "healthy"
+            storage_mode = "postgresql"
+        else:
+            status_text = "degraded (database unavailable)"
+            storage_mode = "error (database unavailable)"
+    else:
+        # Local / test environment: no DATABASE_URL configured
+        status_text = "healthy"
+        storage_mode = "in_memory"
+
     return {
-        "status": "healthy",
+        "status": status_text,
         "service": "ScamQuest API",
         "version": "1.0.0",
-        "session_storage": "in_memory",
+        "session_storage": storage_mode,
+        "database": db_status,
     }
 
 

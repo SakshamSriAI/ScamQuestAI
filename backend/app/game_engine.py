@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Set
 
 from backend.app.ai_service import AIService
+from backend.app.db import load_session_from_db, save_session_to_db
 from backend.app.schemas import (
     CategoryStat,
     CoachReportRequest,
@@ -182,6 +183,75 @@ class GameSession:
             transactions_count=len(self.transactions),
         )
 
+    def to_state_dict(self) -> dict:
+        return {
+            "session_id": self.session_id,
+            "persona": self.persona.value if hasattr(self.persona, "value") else str(self.persona),
+            "language": self.language.value if hasattr(self.language, "value") else str(self.language),
+            "total_days": self.total_days,
+            "initial_difficulty": self.initial_difficulty.value if hasattr(self.initial_difficulty, "value") else str(self.initial_difficulty),
+            "current_day": self.current_day,
+            "balance": self.balance,
+            "investments": self.investments,
+            "score": self.score,
+            "streak": self.streak,
+            "max_streak": self.max_streak,
+            "money_protected": self.money_protected,
+            "money_lost": self.money_lost,
+            "is_current_scenario_answered": self.is_current_scenario_answered,
+            "is_completed": self.is_completed,
+            "current_scenario": self.current_scenario.model_dump() if self.current_scenario else None,
+            "last_answer_result": self.last_answer_result.model_dump() if self.last_answer_result else None,
+            "applied_expense_days": list(self.applied_expense_days),
+            "seen_message_texts": list(self.seen_message_texts),
+            "scenarios_history": self.scenarios_history,
+            "mistakes_by_category": self.mistakes_by_category,
+            "category_counts": self.category_counts,
+        }
+
+    def get_serialized_transactions(self) -> List[dict]:
+        return [tx.model_dump() for tx in self.transactions]
+
+    @classmethod
+    def from_state_dict(cls, data: dict, transactions: List[dict]) -> "GameSession":
+        session = cls.__new__(cls)
+        session.session_id = data["session_id"]
+        session.persona = PlayerPersona(data["persona"])
+        session.language = MessageLanguage(data["language"])
+        session.total_days = data["total_days"]
+        session.initial_difficulty = DifficultyLevel(data["initial_difficulty"])
+        session.current_day = data["current_day"]
+        session.balance = data["balance"]
+        session.investments = data.get("investments", 0)
+        session.score = data["score"]
+        session.streak = data["streak"]
+        session.max_streak = data["max_streak"]
+        session.money_protected = data["money_protected"]
+        session.money_lost = data["money_lost"]
+        session.is_current_scenario_answered = data["is_current_scenario_answered"]
+        session.is_completed = data["is_completed"]
+
+        if data.get("current_scenario"):
+            session.current_scenario = ScenarioResponse(**data["current_scenario"])
+        else:
+            session.current_scenario = None
+
+        if data.get("last_answer_result"):
+            session.last_answer_result = PlayerAnswerResponse(**data["last_answer_result"])
+        else:
+            session.last_answer_result = None
+
+        session.applied_expense_days = set(data.get("applied_expense_days") or [])
+        session.seen_message_texts = set(data.get("seen_message_texts") or [])
+        session.scenarios_history = data.get("scenarios_history") or []
+        session.mistakes_by_category = data.get("mistakes_by_category") or {}
+        session.category_counts = data.get("category_counts") or {}
+        session.transactions = [
+            TransactionRecord(**tx) if isinstance(tx, dict) else tx
+            for tx in transactions
+        ]
+        return session
+
 
 MAX_ACTIVE_SESSIONS = 1000
 
@@ -195,6 +265,12 @@ class GameEngine:
     def __init__(self, ai_service: Optional[AIService] = None):
         self.ai_service = ai_service or AIService()
         self.sessions: Dict[str, GameSession] = {}
+
+    def _persist_session(self, session: GameSession) -> None:
+        try:
+            save_session_to_db(session.to_state_dict(), session.get_serialized_transactions())
+        except Exception as e:
+            logger.debug("Database persistence skipped or failed: %s", e)
 
     def create_session(self, request: GameStartRequest) -> GameSessionPublicState:
         session_id = uuid.uuid4().hex
@@ -217,13 +293,23 @@ class GameEngine:
         new_expenses = self._apply_scheduled_expenses(session)
         self._generate_next_scenario_for_session(session)
 
+        self._persist_session(session)
         return session.to_public_state(new_expenses=new_expenses)
 
     def get_session(self, session_id: str) -> Optional[GameSession]:
-        return self.sessions.get(session_id)
+        session = self.sessions.get(session_id)
+        if session:
+            return session
+        db_res = load_session_from_db(session_id)
+        if db_res:
+            session_dict, txs = db_res
+            session = GameSession.from_state_dict(session_dict, txs)
+            self.sessions[session_id] = session
+            return session
+        return None
 
     def restart_session(self, session_id: str) -> GameSessionPublicState:
-        existing = self.sessions.get(session_id)
+        existing = self.get_session(session_id)
         persona = existing.persona if existing else PlayerPersona.COLLEGE_STUDENT
         language = existing.language if existing else MessageLanguage.HINGLISH
         total_days = existing.total_days if existing else 30
@@ -241,16 +327,18 @@ class GameEngine:
         new_expenses = self._apply_scheduled_expenses(new_session)
         self._generate_next_scenario_for_session(new_session)
 
+        self._persist_session(new_session)
         return new_session.to_public_state(new_expenses=new_expenses)
 
     def advance_to_next_scenario(self, session_id: str) -> GameSessionPublicState:
-        session = self.sessions.get(session_id)
+        session = self.get_session(session_id)
         if not session:
             raise KeyError(f"Session {session_id} not found.")
 
         # If already completed at total_days, stay at Day 30 and return completed state
         if session.is_completed:
             session.current_scenario = None
+            self._persist_session(session)
             return session.to_public_state()
 
         # Strict progression rule: Cannot progress without submitting an answer
@@ -261,6 +349,7 @@ class GameEngine:
         if session.current_day >= session.total_days:
             session.is_completed = True
             session.current_scenario = None
+            self._persist_session(session)
             return session.to_public_state()
 
         # Advance Day (Day 30 is the maximum allowed; never Day 31)
@@ -272,10 +361,11 @@ class GameEngine:
         # Generate fresh scenario with balanced adaptive difficulty
         self._generate_next_scenario_for_session(session)
 
+        self._persist_session(session)
         return session.to_public_state(new_expenses=new_expenses)
 
     def evaluate_player_answer(self, session_id: str, choice: str) -> PlayerAnswerResponse:
-        session = self.sessions.get(session_id)
+        session = self.get_session(session_id)
         if not session:
             raise KeyError(f"Session {session_id} not found.")
 
@@ -422,10 +512,11 @@ class GameEngine:
             is_month_complete=is_month_complete,
         )
         session.last_answer_result = answer_response
+        self._persist_session(session)
         return answer_response
 
     def generate_month_end_report(self, session_id: str) -> MonthEndReportResponse:
-        session = self.sessions.get(session_id)
+        session = self.get_session(session_id)
         if not session:
             raise KeyError(f"Session {session_id} not found.")
 

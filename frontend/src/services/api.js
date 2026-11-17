@@ -3,7 +3,8 @@
  * Connects directly to the FastAPI backend.
  */
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+const rawBase = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 
 class APIError extends Error {
   constructor(message, status, detail) {
