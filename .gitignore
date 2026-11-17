@@ -1,0 +1,58 @@
+# Environment and Secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage Caches
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+frontend/.vite/
+.vercel/
+.npm
+.eslintcache
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# IDE & Editor Temporary Files
+.vscode/
+.idea/
+*.swp
+*.swo

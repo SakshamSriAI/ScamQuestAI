@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-parchment: #F3F0E8;
+    --text-obsidian: #171B18;
+    --border-subtle: #DCD6C7;
+  }
+
+  body {
+    background-color: var(--bg-parchment);
+    color: var(--text-obsidian);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Headlines & Brand Typography */
+  h1, h2, h3, .font-display {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  /* Monospace Financial Figures & Shortcodes */
+  .font-mono, code {
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+    font-feature-settings: 'tnum' on, 'zero' on;
+  }
+}
+
+@layer utilities {
+  .border-hairline {
+    border-width: 1px;
+    border-color: #DCD6C7;
+  }
+  
+  .border-hairline-dark {
+    border-width: 1px;
+    border-color: #333C36;
+  }
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

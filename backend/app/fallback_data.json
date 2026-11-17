@@ -1,0 +1,308 @@
+[
+  {
+    "message_text": "Dear customer, your SBI YONO account will be blocked today due to pending KYC update. Click here to update pan immediately: http://sbi-kyc-update.apk",
+    "sender_id": "+919876543210",
+    "is_scam": true,
+    "scam_type": "FAKE_KYC",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "SENIOR_CITIZEN",
+    "context_title": "Urgent SBI KYC Suspension",
+    "red_flags": [
+      "Sent from a random 10-digit mobile number, not official bank shortcode.",
+      "Asks you to download an .apk application file.",
+      "Creates false urgency by threatening account blockage today."
+    ],
+    "safe_action": "Never download APK files sent via SMS. Contact your local SBI branch directly or use the official YONO app.",
+    "claimed_amount": null
+  },
+  {
+    "message_text": "Bhaiya galti se aapke UPI par ₹2,000 transfer ho gaye hain. Please meri behen ki dawai ke liye refund kar do. Maine Google Pay par collect request bheji hai, bas accept kar lo.",
+    "sender_id": "+919123456789",
+    "is_scam": true,
+    "scam_type": "WRONG_PAYMENT_REFUND",
+    "language": "HINGLISH",
+    "difficulty": "MEDIUM",
+    "persona": "SHOPKEEPER",
+    "context_title": "Fake UPI Wrong Transfer",
+    "red_flags": [
+      "Fraudster sent a 'Collect Request' instead of asking for direct transfer.",
+      "Entering UPI PIN on a collect request debits your money instead of receiving or refunding.",
+      "Emotional manipulation using urgency and medical emergency."
+    ],
+    "safe_action": "Check your actual bank balance in your official UPI app. If money was not credited, ignore. Never approve incoming collect requests.",
+    "claimed_amount": 2000
+  },
+  {
+    "message_text": "Earn Rs 3000 to 8000 daily by simply liking YouTube videos and rating Google hotels! Work 30 mins from home. Contact HR Sneha on Telegram: @parttime_india_jobs",
+    "sender_id": "QP-JOBSMS",
+    "is_scam": true,
+    "scam_type": "JOB_OFFER_SCAM",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "Part-Time YouTube Like Scam",
+    "red_flags": [
+      "Unrealistically high payout for trivial micro-tasks.",
+      "Directs communication to anonymous Telegram channels.",
+      "Will later demand a registration fee or prepaid deposit to release earnings."
+    ],
+    "safe_action": "Block the sender immediately. Legitimate companies never recruit via unsolicited SMS offering thousands for liking videos.",
+    "claimed_amount": 5000
+  },
+  {
+    "message_text": "Priye upbhokta, aapka bijli bill pending hai. Aaj raat 9:30 baje bijli disconnect kar di jayegi. Turant bijli adhikari Sharma ji se 9823412345 par sampark karein.",
+    "sender_id": "+919823412345",
+    "is_scam": true,
+    "scam_type": "ELECTRICITY_DISCONNECT",
+    "language": "HINGLISH",
+    "difficulty": "EASY",
+    "persona": "SENIOR_CITIZEN",
+    "context_title": "Power Disconnection Notice",
+    "red_flags": [
+      "Official electricity boards never send disconnection threats from personal cell numbers.",
+      "Threatens immediate same-night power cut without prior formal bill notices.",
+      "Instructs to call a personal number instead of official power discom portal."
+    ],
+    "safe_action": "Check pending electricity dues only on your state discom's official portal or app (e.g., BESCOM, TNEB, Tata Power).",
+    "claimed_amount": 1450
+  },
+  {
+    "message_text": "Congratulation! Your phone number has won 25,00,000 INR in KBC WhatsApp Lucky Draw 2025. Contact SBI manager Rana Pratap on WhatsApp +917004123456 to claim cheque.",
+    "sender_id": "+917004123456",
+    "is_scam": true,
+    "scam_type": "LOTTERY_PRIZE",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "SENIOR_CITIZEN",
+    "context_title": "KBC WhatsApp Lottery",
+    "red_flags": [
+      "You cannot win a lottery you never entered.",
+      "WhatsApp lotteries are 100% fraudulent advance-fee schemes.",
+      "Asks you to contact an alleged bank official via personal WhatsApp."
+    ],
+    "safe_action": "Delete the message and report on the Cybercrime portal (cybercrime.gov.in or 1930).",
+    "claimed_amount": 2500000
+  },
+  {
+    "message_text": "A/c *1204 Credited with INR 35,000.00 on 01-Nov-24 by NEFT salary transfer from TECH CORP PVT LTD. Avl Bal: INR 42,500.00. - HDFC Bank",
+    "sender_id": "AX-HDFCBK",
+    "is_scam": false,
+    "scam_type": "SAFE_SALARY_CREDIT",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "Monthly Salary Credit",
+    "red_flags": [
+      "Legitimate alphanumeric header (AX-HDFCBK) registered with TRAI.",
+      "Does not contain suspicious external links or phone numbers.",
+      "Standard transactional credit notice masking account digits (*1204)."
+    ],
+    "safe_action": "No action needed. You can verify balance anytime on official HDFC netbanking or mobile app.",
+    "claimed_amount": 35000
+  },
+  {
+    "message_text": "Sir, main PhonePe customer care se bol raha hoon. Aapke pending cashback ₹4,999 ko activate karne ke liye PlayStore se 'QuickSupport' app install karein aur 9-digit code share karein.",
+    "sender_id": "+918889991122",
+    "is_scam": true,
+    "scam_type": "REMOTE_ACCESS_APP",
+    "language": "HINGLISH",
+    "difficulty": "HARD",
+    "persona": "SHOPKEEPER",
+    "context_title": "Remote Screen Share Trap",
+    "red_flags": [
+      "Customer support will never ask you to install screen-sharing software (QuickSupport, AnyDesk).",
+      "Sharing the 9-digit remote access code gives fraudster complete view and control of your device.",
+      "Unsolicited call/message offering free cashback."
+    ],
+    "safe_action": "Never install remote access tools recommended by callers. Disconnect and report the number on Chakshu portal.",
+    "claimed_amount": 4999
+  },
+  {
+    "message_text": "Sir, I want to buy 5 sarees from your shop. I am sending payment via QR code. Please scan this QR code and enter your UPI PIN to receive ₹12,500 advance payment.",
+    "sender_id": "+919711223344",
+    "is_scam": true,
+    "scam_type": "QR_CODE_SCAM",
+    "language": "ENGLISH",
+    "difficulty": "MEDIUM",
+    "persona": "SHOPKEEPER",
+    "context_title": "QR Code Advance Payment",
+    "red_flags": [
+      "Scanning a QR code and entering your UPI PIN is solely for PAYING money, never receiving.",
+      "Legitimate buyers pay directly to your shop's static QR soundbox.",
+      "Attempt to steal money under the pretext of advance wholesale order."
+    ],
+    "safe_action": "Refuse to scan any QR code to receive payments. Advise the buyer to scan your merchant QR code.",
+    "claimed_amount": 12500
+  },
+  {
+    "message_text": "Dear Airtel User, your SIM card will be deactivated within 12 hours due to pending document verification. Call our nodal officer at 08069123456 to prevent disconnection.",
+    "sender_id": "IM-AIRTEL",
+    "is_scam": true,
+    "scam_type": "FAKE_CUSTOMER_SUPPORT",
+    "language": "ENGLISH",
+    "difficulty": "HARD",
+    "persona": "SENIOR_CITIZEN",
+    "context_title": "SIM Card Deactivation Threat",
+    "red_flags": [
+      "Spoofed header or unverified regional routing.",
+      "Arbitrary 12-hour deadline to induce panic.",
+      "Directs call to an unofficial virtual phone number setup by cybercriminals."
+    ],
+    "safe_action": "Visit an authorized Airtel retail gallery or check SIM status on the official Airtel Thanks app.",
+    "claimed_amount": null
+  },
+  {
+    "message_text": "Paid Rs 320 to Fresh Groceries Store via UPI Ref 430129482910 on 05-Nov-24 18:22:10. Updated ICICI A/c Bal is Rs 18,400. - ICICI Bank",
+    "sender_id": "VK-ICICIB",
+    "is_scam": false,
+    "scam_type": "SAFE_TRANSACTION",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "Grocery UPI Debit",
+    "red_flags": [
+      "Standard transactional format with valid 12-digit UPI reference number.",
+      "Verified TRAI registered header (VK-ICICIB).",
+      "No urgency, threats, or external redirection links."
+    ],
+    "safe_action": "Routine transactional notification for groceries bought. No response required.",
+    "claimed_amount": 320
+  },
+  {
+    "message_text": "CBI & Cyber Crime Cell notice: An arrest warrant has been issued against your Aadhaar for illegal money laundering packages. Join immediate Skype investigation or face arrest.",
+    "sender_id": "+919450012345",
+    "is_scam": true,
+    "scam_type": "IMPERSONATION",
+    "language": "ENGLISH",
+    "difficulty": "HARD",
+    "persona": "SENIOR_CITIZEN",
+    "context_title": "Digital Arrest Extortion",
+    "red_flags": [
+      "Concept of 'Digital Arrest' via Skype or video call does not exist under Indian law.",
+      "Law enforcement agencies never send summons or arrest notices via SMS or WhatsApp.",
+      "Extreme psychological intimidation to extort funds into 'safe police custody accounts'."
+    ],
+    "safe_action": "Do not join video calls. Call the National Cybercrime Helpline 1930 immediately.",
+    "claimed_amount": null
+  },
+  {
+    "message_text": "Exclusive Pre-IPO allocation! Invest ₹10,000 today in VIP SEBI-certified Telegram group and get guaranteed ₹50,000 return in 7 days. Register at http://invest-wealth-growth.vip",
+    "sender_id": "+917890123456",
+    "is_scam": true,
+    "scam_type": "INVESTMENT_SCAM",
+    "language": "ENGLISH",
+    "difficulty": "MEDIUM",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "500% Guaranteed Return Scam",
+    "red_flags": [
+      "Guaranteed returns of 400-500% in days are financially impossible and illegal.",
+      "Uses unverified .vip domain and private Telegram groups.",
+      "SEBI explicitly warns that registered entities never solicit via Telegram groups."
+    ],
+    "safe_action": "Never transfer money to personal accounts for investment. Verify registered brokers only on sebi.gov.in.",
+    "claimed_amount": 10000
+  },
+  {
+    "message_text": "Bill paid successfully! INR 850.00 debited from A/c XX4412 for BESCOM Electricity bill payment via Tata Neu. Transaction ID 9823019283.",
+    "sender_id": "VM-TATAPW",
+    "is_scam": false,
+    "scam_type": "SAFE_BILL_PAYMENT",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "SHOPKEEPER",
+    "context_title": "Utility Bill Receipt",
+    "red_flags": [
+      "Official transactional receipt for a routine utility payment.",
+      "Legitimate masked account notation and standard reference ID.",
+      "No suspicious links or requests for credentials."
+    ],
+    "safe_action": "Normal utility debit receipt. Keep for records.",
+    "claimed_amount": 850
+  },
+  {
+    "message_text": "Bhai ₹500 chai aur snacks ka share bhej diya hai Google Pay par. Check kar lena. - Rahul",
+    "sender_id": "+919811223344",
+    "is_scam": false,
+    "scam_type": "SAFE_PEER_TRANSFER",
+    "language": "HINGLISH",
+    "difficulty": "EASY",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "Friend Split Payment",
+    "red_flags": [
+      "Casual peer-to-peer message from a known friend.",
+      "Does not ask to click links, download software, or enter PIN.",
+      "Informational note about a split expense."
+    ],
+    "safe_action": "Verify in your Google Pay or banking transaction history.",
+    "claimed_amount": 500
+  },
+  {
+    "message_text": "Bank alert: Your Netbanking session expired. To prevent unauthorise access, visit http://192.168.1.104/hdfc-login and re-enter your customer ID and password.",
+    "sender_id": "+918012345678",
+    "is_scam": true,
+    "scam_type": "PHISHING_LINK",
+    "language": "ENGLISH",
+    "difficulty": "MEDIUM",
+    "persona": "COLLEGE_STUDENT",
+    "context_title": "Phishing Link to Raw IP",
+    "red_flags": [
+      "Links to an unencrypted raw IP address instead of hdfcbank.com.",
+      "Grammatical errors ('unauthorise access').",
+      "Directs to harvest login customer ID and netbanking password."
+    ],
+    "safe_action": "Never enter banking credentials into links received via SMS. Always type the bank URL manually in your browser.",
+    "claimed_amount": null
+  },
+  {
+    "message_text": "Income Tax Department: Refund of INR 24,580 approved for PAN Axxxxxx9K. Click here to confirm your bank account and receive direct credit within 24 hours: http://incometax-efiling-refund.vip",
+    "sender_id": "+919810012345",
+    "is_scam": true,
+    "scam_type": "PHISHING_LINK",
+    "language": "ENGLISH",
+    "difficulty": "MEDIUM",
+    "persona": "WORKING_PROFESSIONAL",
+    "context_title": "ITR Tax Refund Phishing",
+    "red_flags": [
+      "Sent from personal mobile number instead of official ITD portal sender (e.g. VK-ITRDEPT).",
+      "Directs to an unverified third-party domain (.vip) to harvest bank account and OTP.",
+      "The Income Tax Department never sends direct links to claim refunds; refunds credit automatically to pre-validated bank accounts."
+    ],
+    "safe_action": "Check your refund status solely by logging into the official portal (eportal.incometax.gov.in). Never click SMS links.",
+    "claimed_amount": 24580
+  },
+  {
+    "message_text": "EPFO Notice: Dear member, your UAN 100928391029 has been locked due to unlinked Aadhaar. Download KYC update tool to restore pension benefits: http://epfindia-service.apk",
+    "sender_id": "+918765432109",
+    "is_scam": true,
+    "scam_type": "FAKE_KYC",
+    "language": "ENGLISH",
+    "difficulty": "HARD",
+    "persona": "WORKING_PROFESSIONAL",
+    "context_title": "EPFO UAN Deactivation",
+    "red_flags": [
+      "Urgent claim that UAN and pension are frozen.",
+      "Distributes an untrusted .apk application file.",
+      "EPFO updates happen exclusively through the unified member portal (unifiedportal-mem.epfindia.gov.in)."
+    ],
+    "safe_action": "Never install APK files sent via SMS. Manage your provident fund strictly on epfindia.gov.in or the UMANG app.",
+    "claimed_amount": null
+  },
+  {
+    "message_text": "A/c *4092 Credited: INR 12,450.00 on 12-Nov-24 by corporate travel expense reimbursement from TECH SOLUTIONS PVT LTD. Ref: CORP918239. - AXIS Bank",
+    "sender_id": "AX-AXISBK",
+    "is_scam": false,
+    "scam_type": "SAFE_SALARY_CREDIT",
+    "language": "ENGLISH",
+    "difficulty": "EASY",
+    "persona": "WORKING_PROFESSIONAL",
+    "context_title": "Corporate Expense Reimbursement",
+    "red_flags": [
+      "Official TRAI registered bank header (AX-AXISBK).",
+      "Valid corporate reference identifier matching standard accounting payouts.",
+      "No suspicious links or urgent calls to action."
+    ],
+    "safe_action": "Routine corporate travel reimbursement. No action required.",
+    "claimed_amount": 12450
+  }
+]
